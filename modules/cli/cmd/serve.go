@@ -91,7 +91,9 @@ var serveCmd = &cobra.Command{
 		cfg.Dashboard.CSRF.Secret = secret
 
 		// set gin mode
-		gin.SetMode("release")
+		if !test {
+			gin.SetMode("release")
+		}
 
 		// configure logger
 		config.ConfigureLogger(config.LoggerOptions{
